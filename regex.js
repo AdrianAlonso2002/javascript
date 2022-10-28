@@ -268,8 +268,8 @@ function validarDigitos() {//check
 }
 
 function validarNIFCIF() {//check
-    cad = /^[0-9]+[A-Z]{1}/;//dni
-    cad2 = /^[XYZLKM]+[0-9]+[A-Z]{1}/;//dni2
+    cad = /^[0-9]{8}[A-Z]{1}/;//dni
+    cad2 = /^[XYZLKM]{1}[0-9]{7}A-Z]{1}/;//dni2
     var1 = /^[^PQRSW0-9][0-9]{7}[0-9]/;//cif
     var2 = /^[PQRSW][0-9]{7}[A-Z]/;//cif2
     let valido = true;
@@ -278,21 +278,29 @@ function validarNIFCIF() {//check
     if (cad.test(nifcif)) {
         if (esNif(nifcif) == true){
         valido = true;
+        }else {
+            valido = false;
         }
     } else {
         if (cad2.test(nifcif)) {
             if (esNif(nifcif) == true){
                 valido = true;
+            }else {
+                valido = false;
             }
         } else {
             if (var1.test(nifcif)) {
                 if (esCif(nifcif) == true){
                     valido = true;
+                }else {
+                    valido = false;
                 }
             } else {
                 if (var2.test(nifcif)) {
                     if (esCif(nifcif) == true){
                         valido = true;
+                    }else {
+                        valido = false;
                     }
                 } else {
                    valido = false;
@@ -395,48 +403,6 @@ function validarNIFCIF() {//check
         } 
     }
 }
-
-/*cad = /^[0-9]+[a-z]{1}/;//dni
-cad2 = /^[xyzlkm]+[0-9]+[a-z]{1}/;//nie
-var1 = /^[^PQRSW0-9][0-9]{7}[0-9]/;
-var2 = /^[PQRSW][0-9]{7}[A-Z]/;
-let valido = true;
-dni = dni.toLowerCase();
-
-if (cad.test(dni) || cad2.test(dni)) {
-    valido = validarnif(dni);
-} else {
-    valido = validarcif(dni);
-}
-
-
-function validarnif(dni) {
-    let compru;
-    if (cad.test(dni)) {
-        compru = true;
-    } else {
-        if (cad2.test(dni)) {
-            compru = true;
-        } else {
-            compru = false;
-        }
-    }
-    return compru;
-}
-function validarcif(cif) {
-    let compru;
-    if (var1.test(cif)) {
-        compru = true;
-    } else {
-        if (var2.test(cif)) {
-            compru = true;
-        } else {
-            compru = false;
-        }
-    }
-    return compru;
-}
-return valido;*/
 
 function esCodigoPostal(element1, elProvince) {//check
     let patern = /^\d{5}$/
